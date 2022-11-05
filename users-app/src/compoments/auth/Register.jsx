@@ -18,7 +18,7 @@ const Register = () => {
   console.log('user = ', user);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser());
+    dispatch(registerUser(user));
   };
   return (
     <>
