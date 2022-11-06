@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../features/authSlice';
+import { StyledForm } from './StyledForm';
 
 const Register = () => {
   const dispatch = useDispatch(); // use to values from form to the backend via registerUser function in slice
@@ -19,10 +20,17 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(user));
+    setUser({
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    });
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <h2>Register</h2>
         <input
           type="text"
@@ -66,8 +74,18 @@ const Register = () => {
         />
         <br />
         <br />
-        <button>Register</button>
-      </form>
+        <button>
+          {auth.registerStatus === 'pending' ? 'Sending Data ...' : 'Register'}
+        </button>
+
+        {auth.registerStatus === 'rejected' ? (
+          <p className="error">{auth.registerError}</p>
+        ) : null}
+
+        {auth.registerStatus === 'success' ? (
+          <p className="success">{auth.registerStatus}</p>
+        ) : null}
+      </StyledForm>
     </>
   );
 };
