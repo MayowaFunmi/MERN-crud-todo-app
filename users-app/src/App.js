@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './compoments/auth/Register';
 import Login from './compoments/auth/Login';
 import Navbar from './compoments/Navbar';
+import Home from './compoments/Home';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/" exact element={<Home />} />
         </Routes>
       </Router>
     </>
